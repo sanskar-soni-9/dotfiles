@@ -10,7 +10,6 @@ function set_win_title(){
 }
 precmd_functions+=(set_win_title)
 
-
 ## Plugins section: Enable fish style features
 # Use syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -32,6 +31,28 @@ source /usr/share/fzf/completion.zsh
 # Advanced command-not-found hook
 [[ -e /usr/share/doc/find-the-command/ftc.zsh ]] && source /usr/share/doc/find-the-command/ftc.zsh
 
+
+function in {
+    local -a inPkg=("$@")
+    local -a arch=()
+    local -a aur=()
+
+    for pkg in "${inPkg[@]}"; do
+        if pacman -Si "${pkg}" &>/dev/null ; then
+            arch+=("${pkg}")
+        else 
+            aur+=("${pkg}")
+        fi
+    done
+
+    if [[ ${#arch[@]} -gt 0 ]]; then
+        sudo pacman -S "${arch[@]}"
+    fi
+
+    if [[ ${#aur[@]} -gt 0 ]]; then
+        ${aurhelper} -S "${aur[@]}"
+    fi
+}
 
 ## Options section
 setopt correct                                                  # Auto correct mistakes
@@ -191,15 +212,40 @@ fi
 ## Useful aliases
 
 # Replace ls with exa
-alias ls='exa -al --color=always --group-directories-first --icons' # preferred listing
-alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs
-alias ll='exa -l --color=always --group-directories-first --icons'  # long format
-alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
+alias ls='exa -al --color=always --group-directories-first --icons'     # preferred listing
+alias la='exa -a --color=always --group-directories-first --icons'      # all files and dirs
+alias ll='exa -l --color=always --group-directories-first --icons'      # long format
+alias lt='exa -aT --color=always --group-directories-first --icons'     # tree listing
 alias l.='exa -ald --color=always --group-directories-first --icons .*' # show only dotfiles
+alias ld='eza -lhD --color=always --group-directories-first --icons'    # long list dirs
 
 # Replace some more things with better alternatives
 alias cat='bat --style header --style snip --style changes --style header'
 [ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
+
+# Manage AUR Packages
+alias un='yay -Rns'                      # uninstall package
+alias up='yay -Syu'                      # update system/package/aur
+alias pl='yay -Qs'                       # list installed package
+alias pa='yay -Ss'                       # list availabe package
+alias pc='yay -Sc'                       # remove unused cache
+alias po='yay -Qtdq | yay -Rns -' # remove unused packages, also try > yay -Qqd | yay -Rsu --print -
+
+# VS-code
+alias vc='code --ozone-platform-hint=wayland --disable-gpu' # gui code editor
+
+# Handy change dir shortcuts
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+# Always mkdir a path (this doesn't inhibit functionality to make a single dir)
+alias mkdir='mkdir -p'
+
+# Fixes "Error opening terminal: xterm-kitty" when using the default kitty term to open some programs through ssh
+alias ssh='kitten ssh'
 
 # Common use
 alias grubup="sudo update-grub"
@@ -210,11 +256,6 @@ alias wget='wget -c '
 alias rmpkg="sudo pacman -Rdd"
 alias psmem='ps auxf | sort -nr -k 4'
 alias psmem10='ps auxf | sort -nr -k 4 | head -10'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 alias grep='ugrep --color=auto'
@@ -224,18 +265,16 @@ alias hw='hwinfo --short'                          # Hardware Info
 alias big="expac -H M '%m\t%n' | sort -h | nl"     # Sort installed packages according to size in MB (expac must be installed)
 alias gitpkg='pacman -Q | grep -i "\-git" | wc -l' # List amount of -git packages
 alias ip='ip -color'
+alias please='sudo'
+alias tb='nc termbin.com 9999'
+alias helpme='cht.sh --shell'
+alias pacdiff='sudo -H DIFFPROG=meld pacdiff'
 
 # Get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
 alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
 alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
 alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
-
-# Help people new to Arch
-alias please='sudo'
-alias tb='nc termbin.com 9999'
-alias helpme='cht.sh --shell'
-alias pacdiff='sudo -H DIFFPROG=meld pacdiff'
 
 # Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
@@ -256,5 +295,4 @@ eval "$(mcfly init zsh)"
 # Load zoxide
 eval "$(zoxide init zsh)"
 
-## Run neofetch
 neofetch
