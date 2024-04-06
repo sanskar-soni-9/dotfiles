@@ -31,7 +31,6 @@ source /usr/share/fzf/completion.zsh
 # Advanced command-not-found hook
 [[ -e /usr/share/doc/find-the-command/ftc.zsh ]] && source /usr/share/doc/find-the-command/ftc.zsh
 
-
 function in {
     local -a inPkg=("$@")
     local -a arch=()
@@ -68,6 +67,13 @@ setopt autocd                                                   # if only direct
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
+
+## Google Cloud
+# Google cloud SDK
+if [ -f "$HOME/Dev/gits/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Dev/gits/google-cloud-sdk/path.zsh.inc"; fi
+
+# Google cloud shell completion
+if [ -f "$HOME/Dev/gits/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Dev/gits/google-cloud-sdk/completion.zsh.inc"; fi
 
 # Completion.
 autoload -Uz compinit
@@ -302,4 +308,3 @@ eval "$(mcfly init zsh)"
 eval "$(zoxide init zsh)"
 
 neofetch
-
