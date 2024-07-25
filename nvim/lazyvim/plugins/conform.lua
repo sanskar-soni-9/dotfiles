@@ -15,7 +15,7 @@ return {
 				lua = { "stylua" },
 				fish = { "fish_indent" },
 				sh = { "shfmt" },
-				php = { "pint" },
+				php = { "php-cs-fixer" },
 				blade = { "blade-formatter", "rustywind" },
 				python = { "black" },
 				["_"] = { "prettier" }, -- filetype "_" run formatters on filetypes that don't have other formatters configured.

@@ -30,7 +30,7 @@ keymap("n", "<leader>D", "<cmd>Copilot disable<CR>", opts)
 keymap("i", "<C-b>", "<ESC>^i", opts)
 keymap("i", "<C-e>", "<End>", opts)
 
-keymap("i", "<C-k>", "<Up>", opts)
+keymap("i", "<C-k>", "<Up>", opts) -- conflict with signature help
 keymap("i", "<C-l>", "<Right>", opts)
 keymap("i", "<C-j>", "<Down>", opts)
 keymap("i", "<C-h>", "<Left>", opts)
