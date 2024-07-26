@@ -18,6 +18,7 @@ return {
 				php = { "php-cs-fixer" },
 				blade = { "blade-formatter", "rustywind" },
 				python = { "black" },
+				rust = { "rustfmt" },
 				["_"] = { "prettier" }, -- filetype "_" run formatters on filetypes that don't have other formatters configured.
 				-- ["*"] = { "prettier" }, -- filetype "*" run formatters on all filetypes
 			},
