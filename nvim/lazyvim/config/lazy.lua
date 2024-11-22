@@ -13,12 +13,16 @@ require("lazy").setup({
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
 		-- Extras
+		-- AI
+		-- { import = "lazyvim.plugins.extras.ai.codeium" },
+		{ import = "lazyvim.plugins.extras.ai.copilot-chat" },
+		-- { import = "lazyvim.plugins.extras.ai.copilot" },
+		-- { import = "lazyvim.plugins.extras.ai.supermaven" },
+		-- { import = "lazyvim.plugins.extras.ai.tabnine" },
+
 		-- Coding
-		-- { import = "lazyvim.plugins.extras.coding.codeium" },
-		{ import = "lazyvim.plugins.extras.coding.copilot-chat" },
-		{ import = "lazyvim.plugins.extras.coding.copilot" },
+		-- { import = "lazyvim.plugins.extras.coding.blink" },
 		{ import = "lazyvim.plugins.extras.coding.luasnip" },
-		-- { import = "lazyvim.plugins.extras.coding.mini-ai" }, -- Present in core - no longer in extras
 		-- { import = "lazyvim.plugins.extras.coding.mini-comment" }, -- Present in core
 		{ import = "lazyvim.plugins.extras.coding.mini-surround" },
 		{ import = "lazyvim.plugins.extras.coding.neogen" },
@@ -31,6 +35,7 @@ require("lazy").setup({
 		-- Editor
 		{ import = "lazyvim.plugins.extras.editor.aerial" },
 		-- { import = "lazyvim.plugins.extras.editor.dial" },
+		-- { import = "lazyvim.plugins.extras.editor.fzf" },
 		-- { import = "lazyvim.plugins.extras.editor.harpoon2" },
 		{ import = "lazyvim.plugins.extras.editor.illuminate" },
 		-- { import = "lazyvim.plugins.extras.editor.inc-rename" },
@@ -40,10 +45,12 @@ require("lazy").setup({
 		-- { import = "lazyvim.plugins.extras.editor.mini-move" },
 		-- { import = "lazyvim.plugins.extras.editor.navic" },
 		-- { import = "lazyvim.plugins.extras.editor.outline" },
+		{ import = "lazyvim.plugins.extras.editor.overseer" },
 		-- { import = "lazyvim.plugins.extras.editor.refactoring" },
-		-- { import = "lazyvim.plugins.extras.editor.trouble-v3" }, -- Present in core
+		-- { import = "lazyvim.plugins.extras.editor.telescope" },
 
 		-- Formatting
+		-- { import = "lazyvim.plugins.extras.formatting.biome" },
 		{ import = "lazyvim.plugins.extras.formatting.black" },
 		{ import = "lazyvim.plugins.extras.formatting.prettier" },
 
@@ -65,12 +72,14 @@ require("lazy").setup({
 		-- { import = "lazyvim.plugins.extras.lang.java" },
 		{ import = "lazyvim.plugins.extras.lang.json" },
 		-- { import = "lazyvim.plugins.extras.lang.kotlin" },
+		-- { import = "lazyvim.plugins.extras.lang.lean" },
 		{ import = "lazyvim.plugins.extras.lang.markdown" },
 		-- { import = "lazyvim.plugins.extras.lang.nix" },
 		-- { import = "lazyvim.plugins.extras.lang.nushell" },
+		-- { import = "lazyvim.plugins.extras.lang.ocaml" },
 		-- { import = "lazyvim.plugins.extras.lang.omnisharp" },
 		{ import = "lazyvim.plugins.extras.lang.php" },
-		-- { import = "lazyvim.plugins.extras.lang.python-semshi" },
+		{ import = "lazyvim.plugins.extras.lang.prisma" },
 		{ import = "lazyvim.plugins.extras.lang.python" },
 		-- { import = "lazyvim.plugins.extras.lang.r" },
 		-- { import = "lazyvim.plugins.extras.lang.ruby" },
@@ -86,12 +95,13 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.lang.typescript" },
 		{ import = "lazyvim.plugins.extras.lang.vue" },
 		{ import = "lazyvim.plugins.extras.lang.yaml" },
+		-- { import = "lazyvim.plugins.extras.lang.zig" },
 
 		-- Linting
 		{ import = "lazyvim.plugins.extras.linting.eslint" },
 
 		-- LSP
-		{ import = "lazyvim.plugins.extras.lsp.neoconf" },
+		-- { import = "lazyvim.plugins.extras.lsp.neoconf" },
 		-- { import = "lazyvim.plugins.extras.lsp.none-ls" },
 
 		-- Test
@@ -99,20 +109,22 @@ require("lazy").setup({
 
 		-- UI
 		-- { import = "lazyvim.plugins.extras.ui.alpha" },
+		-- { import = "lazyvim.plugins.extras.ui.dashboard-nvim" },
 		-- { import = "lazyvim.plugins.extras.ui.edgy" },
 		-- { import = "lazyvim.plugins.extras.ui.mini-animate" },
 		{ import = "lazyvim.plugins.extras.ui.mini-indentscope" },
 		-- { import = "lazyvim.plugins.extras.ui.mini-starter" },
 		{ import = "lazyvim.plugins.extras.ui.treesitter-context" },
-		-- { import = "lazyvim.plugins.extras.ui.treesitter-rewrite" }, -- Not Ready Yet
 
 		-- Util
+		-- { import = "lazyvim.plugins.extras.util.chezmoi" },
 		{ import = "lazyvim.plugins.extras.util.dot" },
 		-- { import = "lazyvim.plugins.extras.util.gitui" }, -- But LazyGit is the Best
 		{ import = "lazyvim.plugins.extras.util.mini-hipatterns" },
 		-- { import = "lazyvim.plugins.extras.util.octo" },
 		-- { import = "lazyvim.plugins.extras.util.project" },
-		{ import = "lazyvim.plugins.extras.util.startuptime" },
+		-- { import = "lazyvim.plugins.extras.util.rest" },
+		-- { import = "lazyvim.plugins.extras.util.startuptime" },
 
 		-- import/override with your plugins
 		{ import = "plugins" },
