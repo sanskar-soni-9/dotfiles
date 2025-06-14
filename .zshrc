@@ -4,6 +4,11 @@ if [ -d "$HOME/.local/bin" ]; then
     export PATH=$HOME/.local/bin:$PATH
 fi
 
+# Set $PATH if ~/scripts exist
+if [ -d "$HOME/scripts" ]; then
+    export PATH=$HOME/scripts:$PATH
+fi
+
 eval "$(starship init zsh)"
 function set_win_title(){
     echo -ne "\033]0; $USER@$HOST:${PWD/$HOME/~} \007"
