@@ -2,6 +2,7 @@ return {
 	{
 		"catppuccin/nvim",
 		lazy = true,
+		branch = "main",
 		name = "catppuccin",
 		opts = {
 			integrations = {
